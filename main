@@ -3,6 +3,7 @@ from discord import Game
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix='!')
+bot.case_insensitive = True
 
 @bot.event
 async def on_ready():
@@ -11,8 +12,11 @@ async def on_ready():
 
 @bot.command(name="WhoAmI")
 async def lets_see_who_u_r(ctx, message):
-    await message.channel.send(message.author)
+    await ctx.send('You are {0} and sent {1}'.format(ctx.author, message))
 
 @bot.command(name="WhoIs")
-async def findWhoSomeoneIs(ctx, message):
-	await ctx.send(bot.fetch_user(message).name) --> errors here cuz i think it fetches user wrong idrk
+async def who_is(ctx, user: discord.User):
+	if user == ctx.author:
+		await ctx.send('He is you lololol ({0})'.format(str(user)))
+	else:
+		await ctx.send('He is {0} and you are {1}'.format(str(user), ctx.author))
