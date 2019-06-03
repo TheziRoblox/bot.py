@@ -15,4 +15,4 @@ async def lets_see_who_u_r(ctx, message):
 
 @bot.command(name="WhoIs")
 async def findWhoSomeoneIs(ctx, message):
-	await ctx.send(bot.fetch_user(message).name)
+	await ctx.send(bot.fetch_user(message).name) --> errors here cuz i think it fetches user wrong idrk
